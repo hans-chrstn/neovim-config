@@ -12,10 +12,5 @@ return {
       "<c-up>", "<cmd>Yazi toggle<cr>", desc = "Resume the last yazi session",
     },
   },
-  config = function ()
-    require("yazi").setup({
-
-
-    })
-  end,
+  config = require('config.yazi'),
 }
