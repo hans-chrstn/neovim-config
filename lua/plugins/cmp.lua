@@ -57,7 +57,12 @@ return {
 
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
-      cmdline = {},
+    },
+
+    cmdline = {
+      sources = {
+        default = { "buffer", "cmdline" },
+      },
     },
 
     signature = {
