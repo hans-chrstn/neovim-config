@@ -2,8 +2,13 @@ local keymap = vim.api.nvim_set_keymap
 
 vim.g.mapleader = ' '
 
--- Map :w to the save_buffer function
 local keys = {
+  {
+    mode = "n",
+    key = "<leader>d",
+    cmd = "<cmd>lua vim.diagnostic.open_float(nil, { focus = false })<cr>",
+    opts = { noremap = true, silent = true, desc = "Open diagnostics float" }
+  },
 }
 
 for _, map in ipairs(keys) do

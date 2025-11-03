@@ -10,7 +10,10 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-vim.api.nvim_set_option("clipboard", "unnamedplus")
 require("vim-options")
 require("vim-keys")
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+  rocks = {
+    enabled = false,
+  },
+})

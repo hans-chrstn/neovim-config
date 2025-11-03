@@ -1,3 +1,11 @@
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
+
 local disabled_plugins = {
   'gzip',
   'netrwPlugin',
@@ -12,43 +20,42 @@ local disabled_plugins = {
 }
 
 for _, plugin in ipairs(disabled_plugins) do
-  vim.g[plugin] = 1
+  vim.g['loaded_' .. plugin] = 1
 end
 
+vim.g.matchparen_timeout = 20
+vim.g.matchparen_insert_timeout = 20
+
 local options = {
-  equalalways = true,
-  winbar = '%=%m %F',
-  nrformats = { "alpha", "octal", "hex" },
-  virtualedit = "block",
-  modelines = 5,
-  modelineexpr = false,
-  modeline = true,
+  wrap = false,
+  termguicolors = true,
+  number = true,
+  relativenumber = true,
+  numberwidth = 2,
   cursorline = false,
   cursorcolumn = false,
-  splitright = true,
-  splitbelow = true,
-  smartcase = true,
-  hlsearch = true,
-  ignorecase = true,
-  incsearch = true,
-  inccommand = "nosplit",
-  hidden = true,
-  autoindent = true,
-  termguicolors = true,
   showmode = false,
   showmatch = true,
   matchtime = 2,
-  wildmode = "longest:full,full",
-  number = true,
-  linebreak = true,
-  joinspaces = false,
-  ttimeoutlen = 10, -- https://vi.stackexchange.com/a/4471/7339
-  path = vim.opt.path + "**",
-  isfname = vim.opt.isfname:append("@-@"),
-  autochdir = true,
-  relativenumber = true,
-  numberwidth = 2,
-  shada = "!,'50,<50,s10,h,r/tmp",
+  winbar = '%=%m %F',
+  conceallevel = 3,
+  cmdheight = 0,
+  laststatus = 3,
+  showtabline = 0,
+  list = true,
+  smoothscroll = true,
+
+  splitright = true,
+  splitbelow = true,
+  equalalways = true,
+
+  hlsearch = true,
+  ignorecase = true,
+  smartcase = true,
+  incsearch = true,
+  inccommand = 'nosplit',
+
+  autoindent = true,
   expandtab = true,
   smarttab = true,
   smartindent = true,
@@ -56,74 +63,104 @@ local options = {
   shiftwidth = 2,
   tabstop = 2,
   softtabstop = 2,
+
+  hidden = true,
+  mouse = 'a',
+  mousescroll = 'ver:2,hor:6',
+  scrolloff = 3,
+  sidescrolloff = 3,
+  joinspaces = false,
+  ttimeoutlen = 10,
+  updatetime = 250,
+  confirm = false,
+  wildmode = 'longest:full,full',
+  autochdir = true,
+
+  undofile = true,
+  shada = "!,'50,<50,s10,h,r/tmp",
+
   foldenable = false,
   foldlevel = 99,
   foldlevelstart = 99,
   foldcolumn = '1',
-  foldmethod = "expr",
-  foldexpr = "nvim_treesitter#foldexpr()",
-  undodir = os.getenv("HOME") .. "/.local/share/Trash/undodir/",
-  undofile = true,
-  showtabline = 0,
-  mouse = 'a',
-  mousescroll = "ver:2,hor:6",
-  scrolloff = 3,
-  sidescrolloff = 3,
-  wrap = true,
-  list = true,
-  updatetime = 250,
-  laststatus = 3,
-  confirm = false,
-  conceallevel = 3,
-  cmdheight = 0,
+  foldmethod = 'expr',
+  foldexpr = 'nvim_treesitter#foldexpr()',
+
+  virtualedit = 'block',
+  modelines = 5,
+  modeline = true,
+  modelineexpr = false,
+  path = '**',
+
+  lazyredraw = false,
+  redrawtime = 1500,
+  synmaxcol = 240,
+  re = 0,
+
+  completeopt = 'menu,menuone,noselect',
+
+  swapfile = false,
+  backup = false,
+  writebackup = false,
 }
 
 for op, val in pairs(options) do
   vim.opt[op] = val
 end
 
-vim.g.matchparen_timeout = 20
-vim.g.matchparen_insert_timeout = 20
-
-vim.diagnostic.config {
-  float = { border = "rounded" }, -- add border to diagnostic popups
-}
-
-if vim.fn.executable("rg") then
-  -- if ripgrep installed, use that as a grepper
-  vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
-  vim.opt.grepformat = "%f:%l:%c:%m,%f:%l:%m"
-end
-
-
-if vim.fn.executable("prettier") then
-  vim.opt.formatprg = "prettier --stdin-filepath=%"
-end
-
-vim.opt.formatoptions = "l"
 vim.opt.formatoptions = vim.opt.formatoptions
-    - "a" -- Auto formatting is BAD.
-    - "t" -- Don't auto format my code. I got linters for that.
-    + "c" -- In general, I like it when comments respect textwidth
-    - "o" -- O and o, don't continue comments
-    + "r" -- But do continue when pressing enter.
-    + "n" -- Indent past the formatlistpat, not underneath it.
-    + "j" -- Auto-remove comments if possible.
-    - "2" -- I'm not in gradeschool anymore
+  - 'a'
+  - 't'
+  + 'c'
+  - 'o'
+  + 'r'
+  + 'n'
+  + 'j'
+  - '2'
 
-vim.o.number = true
-vim.opt.smoothscroll = true
+vim.opt.clipboard = 'unnamedplus'
+vim.opt.isfname:append('@-@')
 
--- window-local options
-local window_options = {
-  numberwidth = 2,
-  number = true,
-  relativenumber = true,
-  linebreak = true,
-  cursorline = false,
-  foldenable = false,
-}
-
-for k, v in pairs(window_options) do
-  vim.wo[k] = v
+if vim.fn.executable('rg') == 1 then
+  vim.opt.grepprg = 'rg --vimgrep --no-heading --smart-case'
+  vim.opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 end
+
+if vim.fn.executable('prettier') == 1 then
+  vim.opt.formatprg = 'prettier --stdin-filepath=%'
+end
+
+local border = 'rounded'
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+  vim.lsp.handlers.hover, {
+    border = border
+  }
+)
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    border = border
+  }
+)
+
+vim.diagnostic.config({
+  float = {
+    border = border
+  }
+})
+
+local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
+function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
+  opts = opts or {}
+  opts.border = opts.border or border
+  return orig_util_open_floating_preview(contents, syntax, opts, ...)
+end
+
+vim.filetype.add({
+  extension = {
+    gd = 'gdscript',
+    tres = 'gdresource',
+    tscn = 'gdscene',
+  },
+})

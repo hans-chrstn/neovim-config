@@ -1,12 +1,25 @@
 return {
   "folke/trouble.nvim",
-  cmd = "Trouble",  -- Load on :Trouble command
-  keys = {          -- Load when any of these keys are pressed
-    {
-      "<leader>xx",
-      "<cmd>Trouble<CR>",
-      desc = "Toggle Trouble"
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  cmd = "Trouble",
+  opts = {
+    modes = {
+      preview_float = {
+        mode = "diagnostics",
+        preview = {
+          type = "float",
+          relative = "editor",
+          border = "rounded",
+          title = "Preview",
+          title_pos = "center",
+          position = { 0, -2 },
+          size = { width = 0.3, height = 0.3 },
+          zindex = 200,
+        },
+      },
     },
+  },
+  keys = {
     {
       "<leader>xx",
       "<cmd>Trouble diagnostics toggle<cr>",
@@ -28,16 +41,24 @@ return {
       desc = "LSP Definitions / references / ... (Trouble)",
     },
     {
-      "<leader>xl",
-      "<cmd>Trouble loclist<CR>",
-      desc = "Location List"
+      "<leader>xL",
+      "<cmd>Trouble loclist toggle<cr>",
+      desc = "Location List (Trouble)",
     },
     {
-      "<leader>xq",
-      "<cmd>Trouble qflist<CR>",
-      desc = "Quickfix List"
+      "<leader>xQ",
+      "<cmd>Trouble qflist toggle<cr>",
+      desc = "Quickfix List (Trouble)",
+    },
+    {
+      "<leader>xt",
+      "<cmd>Trouble todo toggle<cr>",
+      desc = "Todo (Trouble)",
+    },
+    {
+      "<leader>xT",
+      "<cmd>Trouble todo toggle filter = {tag = {TODO,FIX,FIXME}}<cr>",
+      desc = "Todo/Fix/Fixme (Trouble)",
     },
   },
-  config = require('config.trouble'),
 }
-
