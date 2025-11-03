@@ -42,7 +42,7 @@ local options = {
   cmdheight = 0,
   laststatus = 3,
   showtabline = 0,
-  list = true,
+  list = false,
   smoothscroll = true,
 
   splitright = true,
