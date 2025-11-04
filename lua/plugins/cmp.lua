@@ -1,8 +1,10 @@
 return {
-	'saghen/blink.cmp',
-	version = '*',
-	dependencies = { 'rafamadriz/friendly-snippets' },
+  'saghen/blink.cmp',
+  version = '*',
+  event = "InsertEnter",
+  dependencies = { 'L3MON4D3/LuaSnip' },
   opts = {
+    snippets = { preset = 'luasnip' },
     keymap = {
       preset = "default",
       ["<Tab>"] = {
@@ -41,8 +43,8 @@ return {
         auto_show = true,
         draw = {
           columns = {
-            { "label", "label_description", gap = 1 },
-            { "kind_icon", "kind", gap = 1 },
+            { "label",     "label_description", gap = 1 },
+            { "kind_icon", "kind",              gap = 1 },
           },
         },
       },

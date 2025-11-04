@@ -79,12 +79,12 @@ local options = {
   undofile = true,
   shada = "!,'50,<50,s10,h,r/tmp",
 
-  foldenable = false,
-  foldlevel = 99,
-  foldlevelstart = 99,
-  foldcolumn = '1',
-  foldmethod = 'expr',
-  foldexpr = 'nvim_treesitter#foldexpr()',
+  -- foldenable = false,
+  -- foldlevel = 99,
+  -- foldlevelstart = 99,
+  -- foldcolumn = '1',
+  -- foldmethod = 'expr',
+  -- foldexpr = 'nvim_treesitter#foldexpr()',
 
   virtualedit = 'block',
   modelines = 5,

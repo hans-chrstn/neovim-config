@@ -1,5 +1,6 @@
 return {
   'sphamba/smear-cursor.nvim',
+  event = 'VeryLazy',
   opts = {
     cursor_color = "#d9d1c7",
     stiffness = 0.3,
