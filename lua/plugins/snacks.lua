@@ -58,6 +58,7 @@ return {
       },
       dashboard = {
         enabled = true,
+        pane_gap = 2,
         preset = {
           header = [[
 ╔────────────────────────────────────────────────────────────────────╗
@@ -73,8 +74,7 @@ return {
 │        ░         ░  ░   ░       ░  ░    ░  ░ ░           ░    ░  ░ │
 │                       ░                                            │
 │                                                                    │
-╚────────────────────────────────────────────────────────────────────╝
-]],
+╚────────────────────────────────────────────────────────────────────╝]],
         },
         formats = {
           key = function(item)
@@ -156,10 +156,8 @@ return {
       { "<leader>bo", function() Snacks.bufdelete.other() end, desc = "Delete Other Buffers" },
       { "]]", function() Snacks.words.jump(vim.v.count1) end, desc = "Next Word Reference" },
       { "[[", function() Snacks.words.jump(-vim.v.count1) end, desc = "Previous Word Reference" },
-      { "<leader>lg", function() Snacks.lazygit() end, desc = "LazyGit" },
       { "<leader>gg", function() Snacks.lazygit() end, desc = "LazyGit" },
-      { "<leader>gf", function() Snacks.lazygit.log_file() end, desc = "LazyGit Current File History" },
-      { "<leader>gl", function() Snacks.lazygit.log() end, desc = "LazyGit Log" },
+      { "<leader>tt", function() Snacks.terminal.toggle() end, desc = "Toggle Terminal (Split)" }
     },
   },
 }
