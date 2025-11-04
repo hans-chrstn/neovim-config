@@ -39,14 +39,14 @@ return {
     },
     {
       '<leader>cf',
-      '<cmd>lua require('conform').format()<cr>',
+      '<cmd>lua require("conform").format()<cr>',
       mode = 'n',
       desc = 'Format Buffer',
       silent = true,
     },
     {
       '<leader>cF',
-      '<cmd>lua require('conform').format()<cr>',
+      '<cmd>lua require("conform").format()<cr>',
       mode = 'v',
       desc = 'Format Lines',
       silent = true,
