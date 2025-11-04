@@ -150,8 +150,6 @@ return {
     },
     event = { "BufReadPre", "BufNewFile" },
     opts = function()
-      local capabilities = require('blink.cmp').get_lsp_capabilities()
-      
       return {
         use_vim_lsp_config = true,
         excluded_servers = {
@@ -169,40 +167,6 @@ return {
           c = { "clangd" },
           cpp = { "clangd" },
           go = { "gopls" },
-        },
-        default_config = {
-          capabilities = capabilities,
-        },
-        configs = {
-          lua_ls = {
-            settings = {
-              Lua = {
-                runtime = { version = "LuaJIT" },
-                diagnostics = {
-                  globals = { "vim" },
-                },
-                workspace = {
-                  library = vim.api.nvim_get_runtime_file("", true),
-                  checkThirdParty = false,
-                },
-                telemetry = { enable = false },
-              },
-            },
-          },
-          rust_analyzer = {
-            settings = {
-              ["rust-analyzer"] = {
-                cargo = {
-                  allFeatures = true,
-                  targetDir = "/tmp/rust-analyzer",
-                },
-                checkOnSave = {
-                  command = "clippy",
-                  extraArgs = { "--target-dir", "/tmp/rust-analyzer-check" },
-                },
-              },
-            },
-          },
         },
       }
     end,

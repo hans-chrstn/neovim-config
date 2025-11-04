@@ -30,7 +30,7 @@ return {
       bufdelete = { enabled = true },
       indent = { enabled = true },
       input = { enabled = true },
-      explorer = { enabled = true, trash = true },
+      explorer = { enabled = false, trash = false },
       zen = {
         enabled = true,
         toggles = {
