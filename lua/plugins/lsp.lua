@@ -135,7 +135,6 @@ return {
 				mode = { "n", "v" },
 				desc = "Code Action",
 			},
-			{ "<leader>rn", "<cmd>Lspsaga rename<CR>", desc = "Rename" },
 			{ "gp", "<cmd>Lspsaga peek_definition<CR>", desc = "Peek Definition" },
 			{ "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "Go to Definition" },
 			{ "gl", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Line Diagnostics" },
@@ -192,10 +191,10 @@ return {
 				},
 				signs = {
 					text = {
-						[vim.diagnostic.severity.ERROR] = " ",
-						[vim.diagnostic.severity.WARN] = " ",
-						[vim.diagnostic.severity.HINT] = " ",
-						[vim.diagnostic.severity.INFO] = " ",
+						[vim.diagnostic.severity.ERROR] = "✘",
+						[vim.diagnostic.severity.WARN] = "▲",
+						[vim.diagnostic.severity.HINT] = "⚑",
+						[vim.diagnostic.severity.INFO] = "»",
 					},
 				},
 				underline = true,
@@ -203,9 +202,17 @@ return {
 				severity_sort = true,
 				float = {
 					border = "none",
-					source = true,
-					header = "",
-					prefix = "",
+					source = "always",
+					header = "Diagnostics:",
+					prefix = "  ",
+					suffix = "  ",
+					format = function(diagnostic)
+						return " " .. diagnostic.message .. " "
+					end,
+					max_width = 80,
+					max_height = 20,
+					focusable = false,
+					close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
 				},
 			})
 

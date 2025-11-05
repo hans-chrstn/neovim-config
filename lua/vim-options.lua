@@ -79,13 +79,6 @@ local options = {
 	undofile = true,
 	shada = "!,'50,<50,s10,h,r/tmp",
 
-	-- foldenable = false,
-	-- foldlevel = 99,
-	-- foldlevelstart = 99,
-	-- foldcolumn = '1',
-	-- foldmethod = 'expr',
-	-- foldexpr = 'nvim_treesitter#foldexpr()',
-
 	virtualedit = "block",
 	modelines = 5,
 	modeline = true,
@@ -126,15 +119,25 @@ local border = "none"
 
 vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
 	border = border,
+	max_width = 80,
+	max_height = 20,
 })
 
 vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
 	border = border,
+	max_width = 80,
 })
 
 vim.diagnostic.config({
 	float = {
 		border = border,
+		max_width = 80,
+		source = "always",
+		prefix = " ",
+		suffix = " ",
+		format = function(diagnostic)
+			return string.format(" %s ", diagnostic.message)
+		end,
 	},
 })
 

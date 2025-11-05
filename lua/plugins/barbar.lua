@@ -1,10 +1,10 @@
 return {
-	'romgrk/barbar.nvim',
+	"romgrk/barbar.nvim",
 	dependencies = {
-		'lewis6991/gitsigns.nvim',
-		'nvim-tree/nvim-web-devicons',
+		"lewis6991/gitsigns.nvim",
+		"nvim-tree/nvim-web-devicons",
 	},
-	event = 'BufReadPost',
+	event = "BufReadPost",
 	init = function()
 		vim.g.barbar_auto_setup = false
 	end,
