@@ -28,7 +28,6 @@ return {
 				{ "<leader>g", group = "git" },
 				{ "<leader>o", group = "outline" },
 				{ "<leader>q", group = "quit/session" },
-				{ "<leader>s", group = "search" },
 				{ "<leader>t", group = "toggle/terminal" },
 				{ "<leader>u", group = "ui" },
 				{ "<leader>x", group = "diagnostics/quickfix" },

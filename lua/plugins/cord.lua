@@ -1,10 +1,9 @@
 return {
   {
     'vyfor/cord.nvim',
-    build = './build',
     event = "VeryLazy",
     keys = {
-      { "<leader>Ct", function() require('cord.api.command').toggle_presence() end, desc = "Toggle Discord Presence" },
+      { "<leader>Ct", function() require('cord.api.command').toggle_presence() end,   desc = "Toggle Discord Presence" },
       { "<leader>Ci", function() require('cord.api.command').toggle_idle_force() end, desc = "Toggle Idle Status" },
     },
     config = function()
@@ -15,15 +14,15 @@ return {
         handle:close()
         return branch
       end
-      
+
       local git_branch = get_git_branch()
-      
+
       local quotes = {
         'fuck windows',
         'putangina',
         'why tf are ram prices so high',
       }
-      
+
       require('cord').setup({
         log_level = 'error',
         editor = {
